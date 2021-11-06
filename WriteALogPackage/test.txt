@@ -1,0 +1,31 @@
+go test -v -race ./...
+?   	github.com/manofthelionarmy/prolog/api/v1	[no test files]
+?   	github.com/manofthelionarmy/prolog/internal/config	[no test files]
+=== RUN   TestIndex
+--- PASS: TestIndex (0.00s)
+=== RUN   TestLog
+=== RUN   TestLog/append_and_read_a_record_succeeds
+=== RUN   TestLog/offset_out_of_range_error
+=== RUN   TestLog/init_with_existing_segments
+=== RUN   TestLog/reader
+=== RUN   TestLog/truncate
+--- PASS: TestLog (0.00s)
+    --- PASS: TestLog/append_and_read_a_record_succeeds (0.00s)
+    --- PASS: TestLog/offset_out_of_range_error (0.00s)
+    --- PASS: TestLog/init_with_existing_segments (0.00s)
+    --- PASS: TestLog/reader (0.00s)
+    --- PASS: TestLog/truncate (0.00s)
+=== RUN   TestMyUnderstanding
+hello from records
+this is another message
+--- PASS: TestMyUnderstanding (0.00s)
+=== RUN   TestSegment
+--- PASS: TestSegment (0.00s)
+=== RUN   TestStoreAppend
+--- PASS: TestStoreAppend (0.00s)
+=== RUN   TestStoreClose
+--- PASS: TestStoreClose (0.00s)
+PASS
+ok  	github.com/manofthelionarmy/prolog/internal/log	0.030s
+FAIL	github.com/manofthelionarmy/prolog/internal/server [build failed]
+FAIL

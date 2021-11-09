@@ -1,5 +1,6 @@
-go test -v -race ./...
+go test -v  ./...
 ?   	github.com/manofthelionarmy/prolog/api/v1	[no test files]
+?   	github.com/manofthelionarmy/prolog/internal/auth	[no test files]
 ?   	github.com/manofthelionarmy/prolog/internal/config	[no test files]
 === RUN   TestIndex
 --- PASS: TestIndex (0.00s)
@@ -26,6 +27,35 @@ this is another message
 === RUN   TestStoreClose
 --- PASS: TestStoreClose (0.00s)
 PASS
-ok  	github.com/manofthelionarmy/prolog/internal/log	0.030s
-FAIL	github.com/manofthelionarmy/prolog/internal/server [build failed]
+ok  	github.com/manofthelionarmy/prolog/internal/log	0.005s
+=== RUN   TestServer
+=== RUN   TestServer/produce/consume_a_message_to/from_the_log_succeeds
+panic: Invalid Request Definition size: expected 1 got 3 rvals: [root * produce]
+
+goroutine 51 [running]:
+github.com/casbin/casbin.(*Enforcer).Enforce(0xc00023a1c0, {0xc00026c990, 0x0, 0x3})
+	/home/armando/go/pkg/mod/github.com/casbin/casbin@v1.9.1/enforcer.go:344 +0x1259
+github.com/manofthelionarmy/prolog/internal/auth.(*Authorizer).Authorize(0xc000010690, {0xc00024470c, 0x4}, {0x94dbc4, 0x1}, {0x95114e, 0x7})
+	/home/armando/Desktop/workspace/learning-distributed-services/WriteALogPackage/internal/auth/authorizer.go:26 +0x12f
+github.com/manofthelionarmy/prolog/internal/server.(*grpcServer).Produce(0xc0000106d0, {0xa013e0, 0xc00026c960}, 0xc00026c900)
+	/home/armando/Desktop/workspace/learning-distributed-services/WriteALogPackage/internal/server/server.go:77 +0x8f
+github.com/manofthelionarmy/prolog/api/v1._Log_Produce_Handler.func1({0xa013e0, 0xc00026c960}, {0x8f4280, 0xc00026c900})
+	/home/armando/Desktop/workspace/learning-distributed-services/WriteALogPackage/api/v1/log_grpc.pb.go:168 +0x78
+github.com/grpc-ecosystem/go-grpc-middleware/auth.UnaryServerInterceptor.func1({0xa013e0, 0xc00026c8d0}, {0x8f4280, 0xc00026c900}, 0xc00003f440, 0xc00000f1d0)
+	/home/armando/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.1.0/auth/auth.go:47 +0xba
+github.com/grpc-ecosystem/go-grpc-middleware.ChainUnaryServer.func1.1.1({0xa013e0, 0xc00026c8d0}, {0x8f4280, 0xc00026c900})
+	/home/armando/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.1.0/chain.go:25 +0x3a
+github.com/grpc-ecosystem/go-grpc-middleware.ChainUnaryServer.func1({0xa013e0, 0xc00026c8d0}, {0x8f4280, 0xc00026c900}, 0xc000063bb8, 0x8c5820)
+	/home/armando/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.1.0/chain.go:34 +0xbf
+github.com/manofthelionarmy/prolog/api/v1._Log_Produce_Handler({0x8edf20, 0xc0000106d0}, {0xa013e0, 0xc00026c8d0}, 0xc00027c420, 0xc0002397d0)
+	/home/armando/Desktop/workspace/learning-distributed-services/WriteALogPackage/api/v1/log_grpc.pb.go:170 +0x138
+google.golang.org/grpc.(*Server).processUnaryRPC(0xc0002421c0, {0xa0a3b8, 0xc00014f380}, 0xc00025a200, 0xc000239920, 0xd65c20, 0x0)
+	/home/armando/go/pkg/mod/google.golang.org/grpc@v1.32.0/server.go:1194 +0xc8f
+google.golang.org/grpc.(*Server).handleStream(0xc0002421c0, {0xa0a3b8, 0xc00014f380}, 0xc00025a200, 0x0)
+	/home/armando/go/pkg/mod/google.golang.org/grpc@v1.32.0/server.go:1517 +0xa2a
+google.golang.org/grpc.(*Server).serveStreams.func1.2()
+	/home/armando/go/pkg/mod/google.golang.org/grpc@v1.32.0/server.go:859 +0x98
+created by google.golang.org/grpc.(*Server).serveStreams.func1
+	/home/armando/go/pkg/mod/google.golang.org/grpc@v1.32.0/server.go:857 +0x294
+FAIL	github.com/manofthelionarmy/prolog/internal/server	0.014s
 FAIL

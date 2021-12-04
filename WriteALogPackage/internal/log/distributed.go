@@ -308,11 +308,12 @@ func (s *StreamLayer) Dial(
 	timeout time.Duration,
 ) (net.Conn, error) {
 	dialer := &net.Dialer{Timeout: timeout}
-	var conn, err = dialer.Dial("tcp", string(addr))
+	conn, err := dialer.Dial("tcp", string(addr))
 	if err != nil {
 		return nil, err
 	}
 
+	// identify to mux this a raft rpc
 	_, err = conn.Write([]byte{byte(RaftRPC)})
 	if err != nil {
 		return nil, err
